@@ -1,7 +1,7 @@
 /*
  * Automatically generated C config: don't edit
  * Linux kernel version: 2.6.32.21-HCDRJacob
- * Mon Oct 25 18:57:46 2010
+ * Tue Oct 26 13:58:15 2010
  */
 #define AUTOCONF_INCLUDED
 #define CONFIG_VIDEO_V4L1_COMPAT 1
@@ -558,7 +558,6 @@
 #define CONFIG_MSM7X00A_SLEEP_NO_LIMIT 1
 #define CONFIG_JBD 1
 #define CONFIG_USB_ARCH_HAS_HCD 1
-#define CONFIG_BCM4329_SOFTAP 1
 #define CONFIG_DEFAULT_TCP_CONG "cubic"
 #define CONFIG_SWITCH 1
 #define CONFIG_MSM_RMNET 1
