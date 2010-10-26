@@ -1,1 +1,0 @@
-cmd_drivers/media/video/msm/built-in.o :=  arm-eabi-ld -EL    -r -o drivers/media/video/msm/built-in.o drivers/media/video/msm/msm_camera.o drivers/media/video/msm/s5k4e1gx.o drivers/media/video/msm/s5k4e1gx_reg.o drivers/media/video/msm/msm_vfe7x.o drivers/media/video/msm/msm_io7x.o 
