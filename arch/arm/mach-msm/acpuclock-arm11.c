@@ -183,7 +183,7 @@ static struct cpufreq_frequency_table msm7227_freq_table[] = {
 
 static struct cpufreq_frequency_table msm72xx_freq_table[] = {
 #if defined(CONFIG_TURBO_MODE)
-//	{ 0, 19200 },
+	{ 0, 19200 },
 	{ 1, 122880 },
 	{ 2, 160000 },
 	{ 3, 245760 },
