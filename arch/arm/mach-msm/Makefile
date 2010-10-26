@@ -158,6 +158,7 @@ obj-$(CONFIG_MSM_NPA) += npa.o npa_resources.o msm_pm_qos.o msm_reqs.o
 obj-$(CONFIG_MSM_NPA_REMOTE) += npa_remote.o
 obj-$(CONFIG_MSM_NPA_REMOTE_ONCRPC) += npa_remote_rpc_client.o
 
+obj-$(NAND_PROTECTION_HACK) += nand_protection_hack.o
 obj-$(CONFIG_PERFLOCK) += perflock.o
 obj-$(CONFIG_PERFLOCK) += htc_set_perflock.o
 obj-$(CONFIG_MICROP_COMMON) += atmega_microp_common.o

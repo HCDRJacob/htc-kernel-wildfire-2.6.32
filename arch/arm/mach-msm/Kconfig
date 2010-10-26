@@ -64,6 +64,14 @@ config MSM_MDP40
 	depends on ARCH_MSM7X30
 	default y
 
+config NAND_PROTECTION_HACK
+	tristate "Nand Protection Hack"
+	depends on ARCH_MSM7225
+	default y
+	help
+	  This option is used to disable the protection on system partition
+	  orignialy for the Tattoo.
+
 config TURBO_MODE
 	bool "Turbo mode"
 	depends on ARCH_MSM7225 || ARCH_MSM7X00A
