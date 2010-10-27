@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Linux kernel version: 2.6.32.21-HCDRJacob
-# Tue Oct 26 13:58:01 2010
+# Wed Oct 27 00:36:27 2010
 #
 CONFIG_ARM=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
