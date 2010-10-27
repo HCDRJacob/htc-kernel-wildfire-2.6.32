@@ -1162,6 +1162,7 @@ static void __init buzz_init(void)
 	 */
 	gpio_request(BUZZ_GPIO_LS_EN, "ls_en");
 	gpio_direction_output(BUZZ_GPIO_LS_EN, 0);
+
 	gpio_request(BUZZ_PS_2V85_EN, "ps_2v85_en");
 
 	msm_hw_reset_hook = buzz_reset;
