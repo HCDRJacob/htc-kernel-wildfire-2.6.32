@@ -77,7 +77,7 @@ static struct resource buzz_wifi_resources[] = {
 		.name		= "bcm4329_wlan_irq",
 		.start		= MSM_GPIO_TO_INT(BUZZ_GPIO_WIFI_IRQ1),
 		.end		= MSM_GPIO_TO_INT(BUZZ_GPIO_WIFI_IRQ1),
-		.flags          = IORESOURCE_IRQ | IORESOURCE_IRQ_LOWEDGE,
+		.flags          = IORESOURCE_IRQ | IORESOURCE_IRQ_HIGHLEVEL | IORESOURCE_IRQ_SHAREABLE,
 	},
 };
 
@@ -85,7 +85,7 @@ static struct wifi_platform_data buzz_wifi_control = {
 	.set_power      = buzz_wifi_power,
 	.set_reset      = buzz_wifi_reset,
 	.set_carddetect = buzz_wifi_set_carddetect,
-	.mem_prealloc   = buzz_wifi_mem_prealloc,
+	.mem_prealloc	= buzz_wifi_mem_prealloc,
 };
 
 static struct platform_device buzz_wifi_device = {
@@ -99,8 +99,9 @@ static struct platform_device buzz_wifi_device = {
 };
 
 extern unsigned char *get_wifi_nvs_ram(void);
+extern int wifi_calibration_size_set(void);
 
-static unsigned buzz_wifi_update_nvs(char *str)
+static unsigned buzz_wifi_update_nvs(char *str, int add_flag)
 {
 #define NVS_LEN_OFFSET		0x0C
 #define NVS_DATA_OFFSET		0x40
@@ -112,19 +113,18 @@ static unsigned buzz_wifi_update_nvs(char *str)
 	ptr = get_wifi_nvs_ram();
 	/* Size in format LE assumed */
 	memcpy(&len, ptr + NVS_LEN_OFFSET, sizeof(len));
-
-	/* the last bye in NVRAM is 0, trim it */
-	if (ptr[NVS_DATA_OFFSET + len -1] == 0)
+	/* if the last byte in NVRAM is 0, trim it */
+	if (ptr[NVS_DATA_OFFSET + len - 1] == 0)
 		len -= 1;
-
-	if (ptr[NVS_DATA_OFFSET + len -1] != '\n') {
-		len += 1;
-		ptr[NVS_DATA_OFFSET + len -1] = '\n';
+	if (add_flag) {
+		strcpy(ptr + NVS_DATA_OFFSET + len, str);
+		len += strlen(str);
+	} else {
+		if (strnstr(ptr + NVS_DATA_OFFSET, str, len))
+			len -= strlen(str);
 	}
-
-	strcpy(ptr + NVS_DATA_OFFSET + len, str);
-	len += strlen(str);
 	memcpy(ptr + NVS_LEN_OFFSET, &len, sizeof(len));
+	wifi_calibration_size_set();
 	return 0;
 }
 
@@ -132,16 +132,15 @@ static int __init buzz_wifi_init(void)
 {
 	int ret;
 
-	if (!machine_is_buzz())
+	if (!machine_is_buzz() )
 		return 0;
 
 	printk("%s: start\n", __func__);
-	buzz_wifi_update_nvs("sd_oobonly=1\n");
-	buzz_wifi_update_nvs("btc_params80=0\n");
-	buzz_wifi_update_nvs("btc_params6=30\n");
+	buzz_wifi_update_nvs("sd_oobonly=1\r\n", 0);
+	buzz_wifi_update_nvs("btc_params70=0x32\r\n", 1);
 	buzz_init_wifi_mem();
 	ret = platform_device_register(&buzz_wifi_device);
         return ret;
 }
 
-device_initcall(buzz_wifi_init);
+late_initcall(buzz_wifi_init);
