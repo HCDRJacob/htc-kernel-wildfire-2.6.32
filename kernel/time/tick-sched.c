@@ -156,16 +156,14 @@ static void tick_nohz_update_jiffies(void)
 }
 
 /*
- * Updates the per cpu time idle statistics counters
- */
+* Updates the per cpu time idle statistics counters
+*/
 static void
 update_ts_time_stats(int cpu, struct tick_sched *ts, ktime_t now, u64 *last_update_time)
-
 {
 	ktime_t delta;
 
 	if (ts->idle_active) {
-		ktime_t now, delta;
 		delta = ktime_sub(now, ts->idle_entrytime);
 		ts->idle_sleeptime = ktime_add(ts->idle_sleeptime, delta);
 		if (nr_iowait_cpu(cpu) > 0)
@@ -189,7 +187,7 @@ static void tick_nohz_stop_idle(int cpu)
 
 static ktime_t tick_nohz_start_idle(int cpu, struct tick_sched *ts)
 {
-	ktime_t now;
+  	ktime_t now;
 
 	now = ktime_get();
 
