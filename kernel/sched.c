@@ -2968,11 +2968,6 @@ unsigned long this_cpu_load(void)
 	return this->cpu_load[0];
 }
 
-unsigned long nr_iowait_cpu(int cpu)
-{
-	struct rq *this = cpu_rq(cpu);
-	return atomic_read(&this->nr_iowait);
-{
 
 /* Variables and functions for calc_load */
 static atomic_long_t calc_load_tasks;
