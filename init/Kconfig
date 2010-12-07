@@ -23,6 +23,19 @@ config CONSTRUCTORS
 
 menu "General setup"
 
+config SCHED_BFS
+	bool "BFS cpu scheduler"
+	--help--
+          The Brain Fuck CPU Scheduler for excellent interactivity and
+          responsiveness on the desktop and solid scalability on normal
+          hardware. Not recommended for 4096 CPUs.
+
+          Currently incompatible with the Group CPU scheduler, and RCU TORTURE
+          TEST so these options are disabled.
+
+          say Y here
+	default y
+
 config EXPERIMENTAL
 	bool "Prompt for development and/or incomplete code/drivers"
 	---help---
@@ -428,7 +441,7 @@ config HAVE_UNSTABLE_SCHED_CLOCK
 
 config GROUP_SCHED
 	bool "Group CPU scheduler"
-	depends on EXPERIMENTAL
+	depends on EXPERIMENTAL && !SCHED_BFS
 	default n
 	help
 	  This feature lets CPU scheduler recognize task groups and control CPU
@@ -467,7 +480,7 @@ config USER_SCHED
 
 config CGROUP_SCHED
 	bool "Control groups"
- 	depends on CGROUPS
+ 	depends on CGROUPS && !SCHED_BFS
  	help
 	  This option allows you to create arbitrary task groups
 	  using the "cgroup" pseudo filesystem and control
