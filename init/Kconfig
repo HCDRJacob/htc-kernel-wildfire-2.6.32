@@ -25,7 +25,7 @@ menu "General setup"
 
 config SCHED_BFS
 	bool "BFS cpu scheduler"
-	--help--
+	---help---
           The Brain Fuck CPU Scheduler for excellent interactivity and
           responsiveness on the desktop and solid scalability on normal
           hardware. Not recommended for 4096 CPUs.
