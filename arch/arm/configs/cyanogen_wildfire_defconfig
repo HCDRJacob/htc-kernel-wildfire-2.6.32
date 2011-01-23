@@ -1,7 +1,7 @@
 #
 # Automatically generated make config: don't edit
 # Linux kernel version: 2.6.32.21-HCDRJacob
-# Wed Oct 27 00:36:27 2010
+# Sun Jan 23 13:55:36 2011
 #
 CONFIG_ARM=y
 CONFIG_SYS_SUPPORTS_APM_EMULATION=y
@@ -204,6 +204,7 @@ CONFIG_ARCH_MSM7225=y
 # CONFIG_ARCH_QSD8X50 is not set
 CONFIG_ARCH_MSM_ARM11=y
 CONFIG_MSM_MDP30=y
+CONFIG_NAND_PROTECTION_HACK=y
 CONFIG_TURBO_MODE=y
 # CONFIG_PERFLOCK is not set
 CONFIG_MSM_AMSS_VERSION=1355
@@ -942,6 +943,8 @@ CONFIG_WLAN=y
 CONFIG_BCM4329=m
 CONFIG_BCM4329_FW_PATH="/system/etc/firmware/fw_bcm4329.bin"
 CONFIG_BCM4329_NVRAM_PATH="/proc/calibration"
+CONFIG_BCM4329_ENABLE_CSCAN=y
+CONFIG_BCM4329_ALLOW_ARP=y
 
 #
 # Enable WiMAX (Networking options) to see the WiMAX drivers
@@ -1664,6 +1667,7 @@ CONFIG_YAFFS_SHORT_NAMES_IN_RAM=y
 # CONFIG_ROMFS_FS is not set
 # CONFIG_SYSV_FS is not set
 # CONFIG_UFS_FS is not set
+# CONFIG_AUFS_FS is not set
 CONFIG_NETWORK_FILESYSTEMS=y
 # CONFIG_NFS_FS is not set
 # CONFIG_NFSD is not set
